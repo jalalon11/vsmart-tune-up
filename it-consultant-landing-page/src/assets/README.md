@@ -1,0 +1,1 @@
+# This file provides information about the assets used in the project, such as images or other media files.
