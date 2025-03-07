@@ -357,6 +357,66 @@ document.addEventListener('DOMContentLoaded', () => {
     timelineItems.forEach(item => {
         timelineObserver.observe(item);
     });
+
+    // Service Cards Animation
+    const serviceCards = document.querySelectorAll('.service-card');
+    const serviceObserverOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const serviceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                serviceObserver.unobserve(entry.target);
+            }
+        });
+    }, serviceObserverOptions);
+
+    serviceCards.forEach(card => {
+        serviceObserver.observe(card);
+    });
+
+    // Leadership Cards Animation
+    const founderCards = document.querySelectorAll('.founder-card');
+    const founderObserverOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const founderObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                founderObserver.unobserve(entry.target);
+            }
+        });
+    }, founderObserverOptions);
+
+    founderCards.forEach(card => {
+        founderObserver.observe(card);
+    });
+
+    // Value Cards Animation
+    const valueCards = document.querySelectorAll('.value-card');
+    const valueObserverOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const valueObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                valueObserver.unobserve(entry.target);
+            }
+        });
+    }, valueObserverOptions);
+
+    valueCards.forEach(card => {
+        valueObserver.observe(card);
+    });
 });
 
 const particleVertex = `
