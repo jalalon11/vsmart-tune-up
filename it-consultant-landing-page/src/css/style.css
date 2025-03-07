@@ -31,12 +31,176 @@ body {
 
 /* Service card hover effects */
 .service-card {
+    position: relative;
+    background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    border-radius: 1.5rem;
+    overflow: hidden;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    isolation: isolate;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.service-card.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Service cards animation delay */
+.service-card:nth-child(1) { transition-delay: 0s; }
+.service-card:nth-child(2) { transition-delay: 0.1s; }
+.service-card:nth-child(3) { transition-delay: 0.2s; }
+.service-card:nth-child(4) { transition-delay: 0.3s; }
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(239, 68, 68, 0.03) 40%,
+        rgba(239, 68, 68, 0.05) 60%,
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at top right,
+        rgba(239, 68, 68, 0.05),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    border-color: rgba(239, 68, 68, 0.2);
+    box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.service-card:hover::before,
+.service-card:hover::after {
+    opacity: 1;
+}
+
+.service-card .card-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+}
+
+.service-card .icon-wrapper {
+    position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.1));
+}
+
+.service-card .icon-wrapper i {
+    font-size: 1.5rem;
+    color: rgb(239, 68, 68);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .icon-wrapper i {
+    transform: scale(1.1);
+    color: rgb(220, 38, 38);
+}
+
+.service-card h3 {
+    color: #1a1a1a;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover h3 {
+    color: rgb(239, 68, 68);
+}
+
+.service-card p {
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.service-card .learn-more {
+    display: flex;
+    align-items: center;
+    color: rgb(239, 68, 68);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.service-card .learn-more i {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .learn-more {
+    color: rgb(220, 38, 38);
+}
+
+.service-card:hover .learn-more i {
+    transform: translateX(4px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-card .card-content {
+        padding: 1.5rem;
+    }
+
+    .service-card .icon-wrapper {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .service-card .icon-wrapper i {
+        font-size: 1.25rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.125rem;
+    }
+
+    .service-card p {
+        font-size: 0.875rem;
+    }
 }
 
 /* Gradient animations */
@@ -208,12 +372,6 @@ html {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* Service cards animation delay */
-.service-card:nth-child(1) { transition-delay: 0s; }
-.service-card:nth-child(2) { transition-delay: 0.1s; }
-.service-card:nth-child(3) { transition-delay: 0.2s; }
-.service-card:nth-child(4) { transition-delay: 0.3s; }
 
 /* Stats animation delay */
 .stat-card:nth-child(1) { transition-delay: 0s; }
@@ -1533,4 +1691,170 @@ html {
 
 .service-item:active {
     transform: scale(0.98);
+}
+
+/* Leadership Cards Animation */
+.founder-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.founder-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation for leadership cards */
+.founder-card:nth-child(1) { transition-delay: 0s; }
+.founder-card:nth-child(2) { transition-delay: 0.2s; }
+
+.founder-card .founder-content {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+}
+
+.founder-card.animate-in .founder-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.founder-card .founder-social-icons {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.4s;
+}
+
+.founder-card.animate-in .founder-social-icons {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Value Cards Animation and Styling */
+.value-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    border-radius: 1.5rem;
+}
+
+.value-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation for value cards */
+.value-card:nth-child(1) { transition-delay: 0s; }
+.value-card:nth-child(2) { transition-delay: 0.2s; }
+.value-card:nth-child(3) { transition-delay: 0.4s; }
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(239, 68, 68, 0.03) 40%,
+        rgba(239, 68, 68, 0.05) 60%,
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(239, 68, 68, 0.2);
+    box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.value-card:hover::before {
+    opacity: 1;
+}
+
+.value-card .icon-container {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 1.5rem;
+}
+
+.value-card:hover .icon-container {
+    transform: scale(1.1) rotate(10deg);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.1));
+}
+
+.value-card .icon-container i {
+    font-size: 1.75rem;
+    color: rgb(239, 68, 68);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.value-card:hover .icon-container i {
+    transform: scale(1.1) rotate(-10deg);
+    color: rgb(220, 38, 38);
+}
+
+.value-card h3 {
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover h3 {
+    color: rgb(239, 68, 68);
+    transform: translateX(5px);
+}
+
+.value-card p {
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover p {
+    color: #1f2937;
+}
+
+@media (max-width: 768px) {
+    .value-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .value-card .icon-container {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .value-card .icon-container i {
+        font-size: 1.5rem;
+    }
+
+    .value-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .value-card p {
+        font-size: 0.875rem;
+    }
 }
